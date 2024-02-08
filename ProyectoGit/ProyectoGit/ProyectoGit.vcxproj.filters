@@ -18,5 +18,13 @@
     <ClCompile Include="ProyectoGit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FicheroDev.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FicheroDev.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

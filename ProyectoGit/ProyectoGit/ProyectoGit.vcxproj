@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FicheroDev.cpp" />
     <ClCompile Include="ProyectoGit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FicheroDev.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
