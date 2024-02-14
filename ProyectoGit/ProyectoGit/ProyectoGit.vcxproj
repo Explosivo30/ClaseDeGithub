@@ -127,8 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FicheroDev.cpp" />
-    <ClCompile Include="ProyectoGit.cpp" />
+    <ClCompile Include="Pointer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FicheroDev.h" />
