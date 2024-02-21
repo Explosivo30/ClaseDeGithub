@@ -51,8 +51,8 @@ int main()
 
     //OPTION 4 - NOT RECOMMENDED
 
-    double my2DArray[NUM_ROW][NUM_COL] = { 4.6,6.7,2.4,4.6,6.7,2.4,4.6,6.7,2.4,4.6,6.7,2.4};
-    return 0;
+    //double my2DArray[NUM_ROW][NUM_COL] = { 4.6,6.7,2.4,4.6,6.7,2.4,4.6,6.7,2.4,4.6,6.7,2.4};
+    
 
     //DINAMIC ARRAYS
     //Memory Leak que hemos alojado elementos en memoria y no los hemos destruido y ya no tenemos forma de destruirlos
@@ -61,10 +61,20 @@ int main()
     int numElement;
 
     std::cin >> numElement;
-
     float* myArray = new float[numElement];
+    
 
     for (int i = 0; i < numElement; i++) {
+                   
+        
+        int a = 0;
+        int b = i;
+        int* myArrayInt = new int[numElement];
+        
+    }
+
+    for (int i = 0; i < numElement; i++) {
+        // * (@myArray + i)
         std::cout << myArray[i] << std::endl;
     }
 
