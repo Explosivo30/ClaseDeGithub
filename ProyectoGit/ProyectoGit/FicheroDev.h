@@ -1,4 +1,6 @@
 #pragma once
+void PointersClass();
+
 class FicheroDev
 {
 	//Cambio que hago en main
