@@ -21,7 +21,7 @@ int main()
     const int NUM_COL = 3;
     
     //Initialize 2D array - Option 1
-    double my2DArray[NUM_ROW][NUM_COL] = {
+    double my2DArrayDouble[NUM_ROW][NUM_COL] = {
 
         {2.0,5.0,6.0},
         {7.0,5.0,3.0},
@@ -72,11 +72,48 @@ int main()
         int* myArrayInt = new int[numElement];
         
     }
-
+    /*
     for (int i = 0; i < numElement; i++) {
         // * (@myArray + i)
         std::cout << myArray[i] << std::endl;
     }
+    */
+
+    //Dynamic Arrays 2 Dimensiones
+    int numRows;
+    int numCols;
+    std::cin >> numRows;
+    std::cin >> numCols;
+
+    //Null pointer por si luego quieres crearlo o no
+
+    int** myMatrix = nullptr;
+
+    //if(gamemode == RANKING_PLAYERS)
+    //else //modo de juego
+    //crear array
+    //if(my2DArray == nullptr) no se ha creado todavia el mapa
+
+    myMatrix = new int*[numCols];
+    for (int i = 0; i < numRows; i++) {
+        myMatrix[i] = new int[numCols];
+    }
+
+    //Read Values
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < numCols; j++) {
+            myMatrix[i][j] = 8;
+        }
+    }
+
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < numCols; j++) {
+            std::cout << myMatrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    //Destruction of arrays //Mirarlo luego
 
 }
 
