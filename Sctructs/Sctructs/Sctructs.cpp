@@ -55,6 +55,14 @@ int main()
     //HEAP ALLOCATION PARA LLEVARLO YO Y NO EL STACK
     Enemy* e4 = new Enemy(1700);
 
+    Enemy* enemies[5];
+    
+    int nums[5]{ 5,6,4,3,2 };
+    for (Enemy* i : enemies) {
+        (i)->m_health;
+        std::cout << i->m_health << std::endl;
+    }
+    
 }
 
 
