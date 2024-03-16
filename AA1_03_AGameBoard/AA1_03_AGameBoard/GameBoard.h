@@ -9,9 +9,9 @@ enum class Movement {
 
 struct Board
 {
-    bool piedras;
-    bool monedas;
-    bool jugador;
+    bool piedras = false;
+    bool monedas = false;
+    bool jugador = false;
 
 };
 
@@ -22,4 +22,4 @@ struct Player
     int money;
 };
 
-void initializeBoard(int colums, int rows, Board board);
+void initializeBoard(int colums, int rows, Board** board, Player player);

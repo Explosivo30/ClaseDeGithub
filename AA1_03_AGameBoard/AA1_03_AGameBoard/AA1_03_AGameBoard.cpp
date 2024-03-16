@@ -5,42 +5,89 @@
 #include"GameBoard.h"
 #define NUM_ROWS 40
 #define NUM_COLUMNS 40
+#include <ctime>
+#include <cstdlib>
 
 int main()
 {    
+    srand(time(NULL));
+    Board** board = new Board*[NUM_ROWS];
+    Player player;
+    player.money = 0;
 
-    Board board[NUM_COLUMNS][NUM_ROWS];
+
+    for (int i = 0; i < NUM_ROWS; i++) {
+        board[i] = new Board[NUM_COLUMNS];
+    }
+
     //Luego la llenamos
-    initializeBoard(NUM_COLUMNS, NUM_ROWS, **board);
+    initializeBoard(NUM_COLUMNS, NUM_ROWS, board, player);
     
     
     std::cout << "Hello World!\n";
+
+
+    //DELETE CODE
+    //When we end we delete the pointers of the heap
+
+    for (int i = 0; i < NUM_ROWS; i++) {
+        delete[] board[i];
+    }
+
+    //Delete form ram
+    delete[] board;
+
+    board = nullptr;
+
+
 }
 
 
-void initializeBoard(int colums, int rows, Board **board) {
+void initializeBoard(int colums, int rows, Board **board,Player player) {
 
     int totalTiles = colums * rows;
 
-    int stones = totalTiles * 0.2f;
+    int stones = totalTiles * 0.2f;//20 % max
 
-    int coins = totalTiles * 0.3f;
+    int coins = totalTiles * 0.3f;//30% max;
 
+    stones = rand() % stones;
+
+    coins = rand() % coins;
+
+    int randomX = rand() % rows;
+    int randomY = rand() % colums;
+
+    player.x = randomX;
+    player.y = randomY;
 
     for (int i = 0; i < colums; ++i) {
         for (int j = 0; i < rows; i++) {
-            //INITIALIZE BOARD
+            //std::cout <<board[i][j];
+            if (i == randomX && j == randomY) {
+                board[i][j].jugador = true;
+            }
+            else
+            {
+                //If random this block will have objects entered
+                if (rand() % 2 == 0)
+                {
+                    //choose between both objetcs with a random
+                    int fill = rand() % 2;
+
+                    if (fill == 0 && stones >= 0) {          
+                        board[i][j].piedras = true;
+                        stones--;
+                    }
+                    else if(fill == 1 && coins >= 0)
+                    {
+                        board[i][j].monedas = true;
+                        coins--;
+                    }
+                }
+            }
+
         }
     }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
