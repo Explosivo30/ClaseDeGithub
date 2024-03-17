@@ -23,3 +23,8 @@ struct Player
 };
 
 void initializeBoard(int colums, int rows, Board** board, Player player);
+
+
+bool checkMovement(Player pos, Movement move);
+
+

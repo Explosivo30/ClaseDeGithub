@@ -21,8 +21,9 @@ int main()
     }
 
     //Luego la llenamos
-    initializeBoard(NUM_COLUMNS, NUM_ROWS, board, player);
+    initializeBoard(NUM_ROWS, NUM_COLUMNS, board, player);
     
+    checkMovement(player, Movement::UP);
     
     std::cout << "Hello World!\n";
 
@@ -57,7 +58,7 @@ void initializeBoard(int colums, int rows, Board **board,Player player) {
 
     int randomX = rand() % rows;
     int randomY = rand() % colums;
-
+   
     player.x = randomX;
     player.y = randomY;
 
@@ -66,6 +67,7 @@ void initializeBoard(int colums, int rows, Board **board,Player player) {
             //std::cout <<board[i][j];
             if (i == randomX && j == randomY) {
                 board[i][j].jugador = true;
+                
             }
             else
             {
@@ -90,4 +92,38 @@ void initializeBoard(int colums, int rows, Board **board,Player player) {
         }
     }
 }
+
+
+
+bool checkMovement(Player pos, Movement move) {
+
+    switch (move)
+    {
+
+    case Movement::UP:
+        if (pos.y - 1 >= 0) {
+            //Can go up
+        }
+        
+        break;
+    case Movement::DOWN:
+        if (pos.y + 1 <= NUM_COLUMNS) {
+
+        }
+        break;
+    case Movement::LEFT:
+        break;
+    case Movement::RIGHT:
+        break;
+    default:
+        break;
+    }
+
+    return false;
+
+        
+    
+
+}
+
 
