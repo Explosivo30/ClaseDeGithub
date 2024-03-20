@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include"GameBoard.h"
-#define NUM_ROWS 2
-#define NUM_COLUMNS 2
+#define NUM_ROWS 5
+#define NUM_COLUMNS 5
 #include <ctime>
 #include <cstdlib>
 
@@ -13,7 +13,7 @@ int main()
     srand(time(NULL));
     Board** board = new Board*[NUM_ROWS];
     Player player;
-    player.money = 0;
+    
     
 
 
@@ -24,7 +24,38 @@ int main()
     //Luego la llenamos
     initializeBoard(NUM_ROWS, NUM_COLUMNS, board, player);
     
-    printBoard(board);
+    char currentMove;
+    while (true) {
+        
+        std::cin >> currentMove;
+        std::cout << player.x << " " << player.y;
+        system("pause");
+        if (currentMove == 'a') {
+            //std::cout << checkMovement(player, Movement::LEFT);
+            if (checkMovement(player, Movement::LEFT)) {
+                setPos(player, board);
+            }
+        }else if (currentMove == 'd') {
+            if (checkMovement(player, Movement::RIGHT)) {
+                setPos(player, board);
+            }
+        }
+        else if (currentMove == 'w') {
+            if (checkMovement(player, Movement::UP)) {
+                setPos(player, board);
+            }
+        }
+        else if (currentMove == 's') {
+            if (checkMovement(player, Movement::DOWN)) {
+                setPos(player, board);
+            }
+        }
+
+        printBoard(board);
+
+    }
+
+    
     //checkMovement(player, Movement::UP);
     
     //std::cout << "Hello World!\n";
@@ -135,7 +166,7 @@ bool checkMovement(Player& pos, Movement move) {
         }
         break;
     case Movement::RIGHT:
-        if (pos.y < NUM_COLUMNS - 1) // Si el movimiento hacia la derecha no lleva al jugador fuera del tablero
+        if (pos.y < (NUM_COLUMNS - 1)) // Si el movimiento hacia la derecha no lleva al jugador fuera del tablero
         {
             pos.lastMove = move;
             return true;
@@ -157,29 +188,30 @@ void addScore(Player& player) {
 void setPos(Player& player, Board** board) {
     //En que i and j esta que es x e y
     if (player.lastMove == Movement::UP) {
-        if (board[player.x][player.y - 1].piedras == false) {
-            board[player.x][player.y].jugador == false;
-            player.y -= 1;
-            movePlayer(player, board);
-        }
-    }
-    else if (player.lastMove == Movement::DOWN) {
-        if (board[player.x][player.y + 1].piedras == false) {
-            board[player.x][player.y].jugador == false;
-            player.y += 1;
-            movePlayer(player, board);
-        }
-    }
-    else if (player.lastMove == Movement::LEFT) {
-        if (board[player.x -1][player.y].piedras == false) {
-            board[player.x][player.y].jugador == false;
+        //std::cout << board[player.x][player.y - 1].piedras;
+        if (board[player.x - 1][player.y ].piedras == false) {
+            board[player.x][player.y].jugador = false;
             player.x -= 1;
             movePlayer(player, board);
         }
     }
+    else if (player.lastMove == Movement::DOWN) {
+        if (board[player.x + 1][player.y ].piedras == false) {
+            board[player.x][player.y].jugador = false;
+            player.x += 1;
+            movePlayer(player, board);
+        }
+    }
+    else if (player.lastMove == Movement::LEFT) {
+        if (board[player.x ][player.y - 1].piedras == false) {
+            board[player.x][player.y].jugador = false;
+            player.y -= 1;
+            movePlayer(player, board);
+        }
+    }
     else if (player.lastMove == Movement::RIGHT) {
-        if (board[player.x +1][player.y].piedras == false) {
-            board[player.x][player.y].jugador == false;
+        if (board[player.x ][player.y + 1].piedras == false) {
+            board[player.x][player.y].jugador = false;
             player.y += 1;
             movePlayer(player,board);
         }
@@ -196,7 +228,7 @@ bool existCoins(Board** board, Player& player) {
 }
 
 void movePlayer(Player& player, Board** board) {
-    board[player.x][player.y].jugador == true;
+    board[player.x][player.y].jugador = true;
 
 }
 
@@ -220,7 +252,7 @@ bool gameOver(Board** board) {
 
 
 void printBoard(Board** board) {
-    //system("cls");
+    system("cls");
 
     for (int i = 0; i < NUM_ROWS; i++) {
         for (int j = 0; j < NUM_COLUMNS; j++) {
