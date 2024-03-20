@@ -34,3 +34,12 @@ void addScore(Player& player);
 void setPos(Player& player, Board** board);
 
 bool existCoins(Board** board, Player& player);
+
+void movePlayer(Player& player, Board** board);
+
+bool gameOver(Board** board);
+
+void printBoard(Board** board);
+
+
+

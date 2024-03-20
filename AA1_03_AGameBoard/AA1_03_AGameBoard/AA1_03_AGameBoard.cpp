@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include"GameBoard.h"
-#define NUM_ROWS 40
-#define NUM_COLUMNS 40
+#define NUM_ROWS 2
+#define NUM_COLUMNS 2
 #include <ctime>
 #include <cstdlib>
 
@@ -24,9 +24,10 @@ int main()
     //Luego la llenamos
     initializeBoard(NUM_ROWS, NUM_COLUMNS, board, player);
     
-    checkMovement(player, Movement::UP);
+    printBoard(board);
+    //checkMovement(player, Movement::UP);
     
-    std::cout << "Hello World!\n";
+    //std::cout << "Hello World!\n";
 
 
     //DELETE CODE
@@ -53,20 +54,30 @@ void initializeBoard(int colums, int rows, Board** board, Player& player) {
 
     int coins = totalTiles * 0.3f;//30% max;
 
-    stones = rand() % stones;
+    stones = rand() % (stones+1);
 
-    coins = rand() % coins;
+    coins = rand() % (coins+1);
 
-    int randomX = rand() % rows;
-    int randomY = rand() % colums;
+    int randomX = rand() % NUM_ROWS;
+    int randomY = rand() % NUM_COLUMNS;
 
     player.x = randomX;
     player.y = randomY;
 
-    for (int i = 0; i < colums; ++i) {
-        for (int j = 0; i < rows; i++) {
-            //std::cout <<board[i][j];
-            if (i == randomX && j == randomY) {
+    std::cout << player.x << " " << player.y << std::endl;
+    for (int i = 0; i < NUM_ROWS; ++i) {
+        for (int j = 0; j < NUM_COLUMNS; j++) {
+            board[i][j].jugador = false;
+            board[i][j].monedas = false;
+            board[i][j].piedras = false;
+        }
+    }
+
+
+    for (int i = 0; i < NUM_ROWS; ++i) {
+        for (int j = 0; j < NUM_COLUMNS; j++) {
+
+            if (i == player.x && j == player.y) {
                 board[i][j].jugador = true;
 
             }
@@ -111,7 +122,7 @@ bool checkMovement(Player& pos, Movement move) {
     case Movement::DOWN:
         if (pos.x < NUM_ROWS - 1) // Si el movimiento hacia abajo no lleva al jugador fuera del tablero
         {
-            pos.lastMove = move;// Si el movimiento hacia arriba no lleva al jugador fuera del tablero
+            pos.lastMove = move;
             return true;
         }
             
@@ -119,14 +130,14 @@ bool checkMovement(Player& pos, Movement move) {
     case Movement::LEFT:
         if (pos.y > 0) // Si el movimiento hacia la izquierda no lleva al jugador fuera del tablero
         {
-            pos.lastMove = move;// Si el movimiento hacia arriba no lleva al jugador fuera del tablero
+            pos.lastMove = move;
             return true;
         }
         break;
     case Movement::RIGHT:
         if (pos.y < NUM_COLUMNS - 1) // Si el movimiento hacia la derecha no lleva al jugador fuera del tablero
         {
-            pos.lastMove = move;// Si el movimiento hacia arriba no lleva al jugador fuera del tablero
+            pos.lastMove = move;
             return true;
         }
         break;
@@ -147,34 +158,30 @@ void setPos(Player& player, Board** board) {
     //En que i and j esta que es x e y
     if (player.lastMove == Movement::UP) {
         if (board[player.x][player.y - 1].piedras == false) {
-            board[player.x][player.y].jugador = false;
+            board[player.x][player.y].jugador == false;
             player.y -= 1;
-            board[player.x][player.y].jugador = true;
-            
+            movePlayer(player, board);
         }
     }
     else if (player.lastMove == Movement::DOWN) {
         if (board[player.x][player.y + 1].piedras == false) {
-            board[player.x][player.y].jugador = false;
+            board[player.x][player.y].jugador == false;
             player.y += 1;
-            board[player.x][player.y].jugador = true;
-
+            movePlayer(player, board);
         }
     }
     else if (player.lastMove == Movement::LEFT) {
         if (board[player.x -1][player.y].piedras == false) {
-            board[player.x][player.y].jugador = false;
+            board[player.x][player.y].jugador == false;
             player.x -= 1;
-            board[player.x][player.y].jugador = true;
-
+            movePlayer(player, board);
         }
     }
     else if (player.lastMove == Movement::RIGHT) {
         if (board[player.x +1][player.y].piedras == false) {
-            board[player.x][player.y].jugador = false;
+            board[player.x][player.y].jugador == false;
             player.y += 1;
-            board[player.x][player.y].jugador = true;
-
+            movePlayer(player,board);
         }
     }
 }
@@ -186,4 +193,53 @@ bool existCoins(Board** board, Player& player) {
     }
     
     return false;
+}
+
+void movePlayer(Player& player, Board** board) {
+    board[player.x][player.y].jugador == true;
+
+}
+
+
+bool gameOver(Board** board) {
+    int coins = 0;
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLUMNS; j++) {
+            if (board[i][j].monedas == true) {
+                coins++;
+            }
+        }
+    }
+
+    if (coins == 0) {
+        return true;
+    }
+
+    return false;
+}
+
+
+void printBoard(Board** board) {
+    //system("cls");
+
+    for (int i = 0; i < NUM_ROWS; i++) {
+        for (int j = 0; j < NUM_COLUMNS; j++) {
+            if (board[i][j].jugador == true) {
+                std::cout << " J ";
+            }
+            else if (board[i][j].piedras == true) {
+                std::cout << " P ";
+            }
+            else if (board[i][j].monedas == true) {
+                std::cout << " M ";
+            }
+            else
+            {
+                std::cout << " X ";
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    
 }
