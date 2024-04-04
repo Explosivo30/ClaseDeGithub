@@ -19,7 +19,6 @@ struct Player
 {
     int x;
     int y;
-    int money;
     int score;
     Movement lastMove;
 };
