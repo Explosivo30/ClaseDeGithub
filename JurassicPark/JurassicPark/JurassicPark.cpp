@@ -13,7 +13,7 @@ int main()
     Car c3(5, 2, "Ferrari", false); //Abstraction Principle
     Car c4(3);
     std::cout << c1.GetColor() << std::endl;
-    std::cout << Car::NUM_WHEELS << std::endl;
+    c1.SetColor(10);
 }
 
 //When main Finishes c1,c2,c3,c4 are destroyed
