@@ -2,18 +2,31 @@
 //
 
 #include <iostream>
-#include "Car.h"
-
+#include <windows.h> 
+#include "Park.h"
 
 int main()
 {
-    Car c1;
-    Car c2;
-    
-    Car c3(5, 2, "Ferrari", false); //Abstraction Principle
-    Car c4(3);
-    std::cout << c1.GetColor() << std::endl;
-    c1.SetColor(10);
-}
+    float dimX;
+    std::cin >> dimX;
+    float dimY;
+    std::cin >> dimY;
 
-//When main Finishes c1,c2,c3,c4 are destroyed
+    int numScientists;
+    int numDynosaurs;
+    int numVehicles;
+    std::cin >> numScientists >> numDynosaurs >> numVehicles;
+
+    Park park(dimX, dimY, numScientists, numDynosaurs, numVehicles);
+
+    const int NUM_FPS = 5;
+
+    while (true)
+    {
+        // TODO: Finish implementing game loop
+        park.Update();
+        park.Print();
+
+        Sleep(1000 / NUM_FPS);
+    }
+}
