@@ -61,5 +61,17 @@ public:
 		--m_size;
 		return  valueToRemove;
 	}
+
+	void Print() const
+	{
+		Node* copyTopPointer = m_top;
+		while (copyTopPointer != nullptr)
+		{
+			std::cout << copyTopPointer->value << "-";
+			copyTopPointer = copyTopPointer->next;
+		}
+		std::cout << std::endl;
+	}
+
 };
 
