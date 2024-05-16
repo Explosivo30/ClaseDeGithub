@@ -1,17 +1,17 @@
 #pragma once
 #include<iostream>
 
+struct Node {
+	int m_value;
+	Node* m_prev;
+	Node* m_next;
+};
+
 //PILAS
 //COLAS
 //LISTAS
 class MyList
 {
-	struct Node {
-		int m_value;
-		Node* m_prev;
-		Node* m_next;
-	};
-
 	size_t m_size;
 	Node* m_begin;
 	Node* m_end;
@@ -121,7 +121,7 @@ public:
 		int i = 0;
 		while (i < value) {
 			it = it->m_next;
-			++it;
+			++i;
 		}
 		return it;
 	}
