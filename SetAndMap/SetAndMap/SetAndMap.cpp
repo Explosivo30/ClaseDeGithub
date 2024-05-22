@@ -5,10 +5,13 @@
 #include <map>
 #include <unordered_map>
 
+#include<set>
+#include<unordered_set>
 int main()
 {
     //CRUD
     //CREATE
+    /*
     std::unordered_map<int, std::string> map1;
     map1.emplace(5, "Manish");
     map1.emplace(916, "Jordi");
@@ -43,7 +46,64 @@ int main()
     {
         std::cout << keyValue.first << " " << keyValue.second << std::endl;
     }
+    */
+
+    //CRUD - CREATE
+    std::cout << "PROBLEMA1" << std::endl;
+    std::set<int> mySetOfInts;
+    mySetOfInts.insert(10);
+    mySetOfInts.insert(-594);
+    mySetOfInts.insert(4);
+    mySetOfInts.insert(74);
+
+    std::set<std::string> mySetOfStrings;
+    mySetOfStrings.insert("Orange");
+    mySetOfStrings.insert("Peer");
+    mySetOfStrings.insert("Watermelon");
+    mySetOfStrings.insert("Orange");
+
+    //For base-ranged loop
+    for (std::string s : mySetOfStrings) 
+    {
+        std::cout << s << std::endl;
+    }
+    std::cout << "PROBLEMA2" << std::endl;
+    std::string s1 = "murcielago";
+    std::string s2 = "ordenador";
+
+    std::unordered_set<char> mySetOfChars;
+
+    for (int i = 0; i < s2.size(); ++i)
+    {
+        mySetOfChars.insert(s2[i]);
+    }
+
+    std::unordered_set<char>::iterator itSet = mySetOfChars.begin();
+
+    while (itSet != mySetOfChars.end())
+    {
+        std::cout << *itSet << std::endl;
+        ++itSet;
+    }
+
+    for (char c : s1)
+    {
+        std::unordered_set<char>::iterator itSet2 = mySetOfChars.begin(c);
+        if (itSet2 != mySetOfChars.end())
+        {
+            std::cout << c << " ";
+        }
+        //s1.find(s1);
+    }
+
+    std::cout << std::endl;
+
 }
+
+
+
+    
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
